@@ -45,6 +45,8 @@ def find(start, end, tree):
 ap = argparse.ArgumentParser()
 ap.add_argument('bam', help='sorted bam file')
 ap.add_argument('outPrefix', help='prefix to save the profile of repeat elements')
+# add CLI argument for minium mapq
+ap.add_argument('qual', type = int, help = 'minimum mapping quality')
 args = ap.parse_args()
 
 
@@ -170,7 +172,7 @@ for chr in chr_list:
     for read in bamfile.fetch(chr):
         readName=read.query_name
         
-        if read.mapq==50 and not is_junction(read):
+        if read.mapq>=args.qual and not is_junction(read):
             #feature=whichFeature(read,chr)
             #outFile[chr].write( readName+','+chr + ',' + feature + '\n' )
             find_list_repeat=find(read.reference_start, read.reference_end , tree_repeat[chr])

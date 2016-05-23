@@ -130,7 +130,7 @@ ap.add_argument('bam', help='sorted bam file with mapped reads')
 ap.add_argument('out', help='file to save the number of reads per genome category')
 ap.add_argument("--perCategory", help="reports the assigment for each read. A separate file per chromosome will be created",action="store_true")
 # added CLI argument to allow changing of mapping quality cut-off
-ap.add_argument('qual', help='alignment quality threshold before calling multi-mappers')
+ap.add_argument('qual', help='alignment quality threshold before calling multi-mappers', type = int)
 args = ap.parse_args()
 
 

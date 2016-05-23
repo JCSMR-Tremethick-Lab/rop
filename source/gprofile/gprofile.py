@@ -355,7 +355,7 @@ for chr in chr_list:
     for read in bamfile.fetch(chr):
         readName=read.query_name
              
-        if read.mapq!=50:
+        if read.mapq<=20:
             multiMappedReads.append(readName)
         elif is_junction(read):
             if args.perCategory:
@@ -388,7 +388,7 @@ for read in bamfile.fetch('MT'):
     else:
         readName=read.query_name
     
-    if read.mapq!=50:
+    if read.mapq<=20:
             multiMappedReads.append(readName)
     else:
         if args.perCategory:

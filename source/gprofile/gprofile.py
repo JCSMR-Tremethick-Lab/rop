@@ -323,10 +323,12 @@ if args.perCategory:
     outfile = open(f_file, 'w' )
     outFile['MT']=open(f_file, 'w' )
 
-
-
+# added check of existing BAM index; if missing, create index
 print "Open bam file",args.bam
 bamfile = pysam.Samfile(args.bam, "rb")
+if (pysam.AlignmentFile.has_index(bamfile) == False):
+	pysam.index(args.bam)
+
 
 
 #list for read categories

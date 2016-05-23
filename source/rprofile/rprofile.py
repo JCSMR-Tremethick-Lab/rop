@@ -160,6 +160,8 @@ kOverlapGene=0
 
 print "Open bam file",args.bam
 bamfile = pysam.Samfile(args.bam, "rb")
+if (pysam.AlignmentFile.has_index(bamfile) == False):
+	pysam.index(args.bam)
 
 
 
